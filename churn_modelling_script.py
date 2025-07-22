@@ -8,6 +8,7 @@ from sklearn.metrics import (
     accuracy_score, precision_score, recall_score,
     f1_score, roc_auc_score, classification_report, roc_curve
 )
+import joblib  # NEW: For saving the models
 
 # Load cleaned dataset
 df = pd.read_csv("cleaned_telco_final.csv")
@@ -68,4 +69,11 @@ plt.tight_layout()
 plt.savefig("roc_curve_comparison.png")
 plt.close()
 
+# ✅ Save both models for deployment
+joblib.dump(logreg, "logistic_regression_model.pkl")
+joblib.dump(rf, "random_forest_model.pkl")
+
 print("\n✅ Modeling complete. ROC curve saved as 'roc_curve_comparison.png'.")
+print("✅ Models saved as 'logistic_regression_model.pkl' and 'random_forest_model.pkl'.")
+
+
